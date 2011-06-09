@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "loudmouth"
   gem.homepage = "http://github.com/pglombardo/loudmouth"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Simple comments for one or many models.}
+  gem.description = %Q{Loudmouth is the core engine behind the commenting system @ http://g.ameface.com}
   gem.email = "pglombardo@gmail.com"
   gem.authors = ["Peter Giacomo Lombardo"]
   # dependencies defined in Gemfile
