@@ -1,5 +1,6 @@
 :javascript
-  function prepareTextField(e, msg) {
+  msg = "#{new_comment_content}"
+  function prepareTextField(e) {
     if (e) {
       if (e.value == msg) {
         e.value = '';
@@ -7,7 +8,7 @@
     }
   }
 
-  function revertTextField(e, msg) {
+  function revertTextField(e) {
     if (e)
       if (e.value == '') {
         e.value = msg;
@@ -19,8 +20,8 @@
   %table
     %tr 
       %td{ :style => 'width: 80%;' }
-        = f.text_area :content, :style => 'width: 100%; height: 50px;', :value => new_comment_content, :onfocus => "prepareTextField(this, \"#{new_comment_content}\");", :onblur => 'revertTextField(this, \"#{new_comment_content}\");'
-        = f.hidden_field user.foreign_key.to_sym, { :value => "" }
+        = f.text_area :content, :style => 'width: 100%; height: 50px;', :value => new_comment_content, :onfocus => "prepareTextField(this);", :onblur => "revertTextField(this);"
+        = f.hidden_field user.foreign_key.to_sym, { :value => instance_variable_get(:"@#{user}").id }
     %tr 
       %td{ :style => 'text-align: right;' }
         = submit_tag "Save", :disable_with => "Please wait..."
