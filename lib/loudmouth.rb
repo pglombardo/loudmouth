@@ -7,10 +7,10 @@ module Loudmouth
   end
   
   mattr_accessor :use_layout
-  @@use_layout = ""
+  @@use_layout = ''
   
   mattr_accessor :new_comment_content
-  @@new_comment_content = ""
+  @@new_comment_content = ''
 
   def self.setup
     yield self
