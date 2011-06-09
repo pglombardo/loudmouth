@@ -1,0 +1,7 @@
+
+= render_comment_form
+
+- @comments.each do |comment|
+  = render :partial => 'loudmouth/comments/comment', :object => comment  
+
+

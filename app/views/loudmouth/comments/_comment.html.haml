@@ -1,0 +1,14 @@
+.comment{ :id => dom_id(comment) }
+  %table{ :style => 'border-top: 1px solid black;' }
+    %tr{ :style => 'vertical-align: top;' }
+      %td{ :style => '' }
+        - cc = simple_format(comment.content)
+        = auto_link(cc)
+    %tr
+      %td{ :style => 'text-align: right;' }
+        = time_ago_in_words(comment.created_at)
+        ago
+        = link_to "Delete", topic_comment_path(topic, comment), :method => :delete, :confirm => "This will delete the comment from your profile.  Are you sure?"
+      
+  / - if comment.children and comment.children.length > 0
+  /   = indented_render 1, :partial => 'loudmouth/comments/comment', :collection => comment.children
