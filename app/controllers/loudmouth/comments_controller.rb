@@ -51,13 +51,13 @@ class Loudmouth::CommentsController < ApplicationController
   def destroy
     @comment = topic_comment_c.find(params[:id])
     
-    if validate_destroy()
+    if validate_destroy(@comment)
       @comment.destroy
       flash[:success] = 'Comment deleted.'
       redirect_to after_destroy_path()
     else
       flash[:error] = 'You can only delete comments that are yours.'
-      redirect_to topic_path()
+      redirect_to :back
     end
   end
   
@@ -121,10 +121,21 @@ class Loudmouth::CommentsController < ApplicationController
   end
   
   def after_destroy_path
-    url_for(@user)
+    :back
   end
 
-  def validate_destroy
-    true
+  def validate_destroy(comment)
+    # Check if the app if there are corresponding instance variables for
+    # topic and user.  If so attempt to validate with those.
+    # Otherwise, this function can be overridden.
+    user = instance_variable_get(:"@#{user}")
+    topic = instance_variable_get(:"@#{topic}")
+    
+    if user and topic
+      if user.id == topic.send(:"#{user.foreign_key}")
+        return true
+      end
+    end
+    false
   end
 end
