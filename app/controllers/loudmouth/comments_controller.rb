@@ -19,6 +19,7 @@ class Loudmouth::CommentsController < ApplicationController
 
   def create
     @comment = topic_comment_c.new(params[topic.foreign_key.to_sym])
+    @user = user_c.find(params[user.foreign_key.to_sym])
     
     if params[topic_comment.to_sym][:content] == new_comment_content()
       flash[:error] = new_comment_content().
@@ -31,7 +32,7 @@ class Loudmouth::CommentsController < ApplicationController
       redirect_to after_create_path()
     else
       flash[:error] = @comment.errors.full_messages.to_sentence if @comment.errors.any?
-      redirect_to topic_path()
+      redirect_to :back
     end
   end
 
@@ -116,6 +117,7 @@ class Loudmouth::CommentsController < ApplicationController
   end
   
   def after_create_path
+    url_for(@user)
   end
   
   def after_destroy_path
