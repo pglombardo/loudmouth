@@ -1,0 +1,8 @@
+
+Initializer and locale files installed.
+
+Be sure to edit the initializer to fit your needs.
+
+Next, run 'rails g loudmouth Model' to enable loudmouth 
+support for your model.
+
