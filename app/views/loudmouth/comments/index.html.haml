@@ -2,7 +2,7 @@
   - unless flash[key].blank?
     %p{ :class => "flash #{key}" }= flash[key]
 
-= render_comment_form
+= render_comment_form_for(@topic, user)
 
 - @comments.each do |comment|
   = render :partial => 'loudmouth/comments/comment', :object => comment  
