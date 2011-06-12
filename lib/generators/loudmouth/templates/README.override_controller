@@ -1,0 +1,11 @@
+
+To use the override controller, make sure to include
+
+  :controller => 'comments'
+
+in your comments_on call in your routes.rb file.
+
+Here's an example:
+
+  comments_on :articles, :by => :users, :controller => 'comments'
+
