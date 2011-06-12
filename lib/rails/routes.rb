@@ -20,6 +20,9 @@ module ActionDispatch::Routing
       user_model = options[:by].to_s
       options.delete(:by)
       
+      Loudmouth.treasure_map[topic_model.singularize.downcase.to_sym] = 
+                                        { :by => user_model.singularize.downcase }
+      
       constraint = lambda { |req| req.env["loudmouth_map"] = { :topic_model => topic_model, 
                                                                :user_model => user_model }; true }
       Rails.application.routes.draw do
