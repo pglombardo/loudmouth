@@ -10,7 +10,11 @@ class Loudmouth::CommentsController < ApplicationController
     @comments = topic_comment_c.find(:all, :conditions => { topic.foreign_key.to_sym => @topic.id }, 
                                     :order => 'created_at DESC', :include => [ :author ])
     @comment = topic_comment_c.new
-    render 'loudmouth/comments/index'
+    if defined?(@layout)
+      render 'loudmouth/comments/index', :layout => @layout
+    else
+      render 'loudmouth/comments/index'
+    end
   end
   
   def edit
@@ -19,7 +23,8 @@ class Loudmouth::CommentsController < ApplicationController
 
   def create
     @comment = topic_comment_c.new(params[topic_comment.to_sym])
-    @user = user_c.find(params[user.foreign_key.to_sym])
+    @user = user_c.find(params[topic_comment.to_sym][('author_' + user.foreign_key).to_sym])
+    @topic = topic_c.find(params[topic_comment.to_sym][topic.foreign_key.to_sym])
     
     if params[topic_comment.to_sym][:content] == new_comment_content()
       flash[:error] = new_comment_content().
