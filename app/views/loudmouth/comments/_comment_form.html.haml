@@ -17,15 +17,15 @@
 
 %h3 New Comment
 
-- author_key = 'author_' + user.class.name.underscore.downcase.foreign_key
-- topic_comment = topic.class.name.underscore.downcase + '_comment'
+- author_key = 'author_' + user.class.name.underscore.foreign_key
+- topic_comment = topic.class.name.underscore + '_comment'
 
-= form_for topic_comment.to_sym, :url => send("#{topic.class.name.underscore.downcase}_comments_path", topic) do |f|
+= form_for topic_comment.to_sym, :url => send("#{topic.class.name.underscore}_comments_path", topic) do |f|
   %table
     %tr 
       %td{ :style => 'width: 80%;' }
         = f.text_area :content, :style => 'width: 100%; height: 50px;', :value => content, :onfocus => "prepareTextField(this);", :onblur => "revertTextField(this);"
-        = f.hidden_field topic.class.name.underscore.downcase.foreign_key.to_sym, { :value => topic.id }
+        = f.hidden_field topic.class.name.underscore.foreign_key.to_sym, { :value => topic.id }
         = f.hidden_field author_key.to_sym,  { :value => user.id }
     %tr 
       %td{ :style => 'text-align: right;' }
