@@ -54,7 +54,7 @@ Advanced Usage
 Customizing
 -----------
 
-To further customize loudmouth, edit the values in config/initializers/loudmouth.rb
+To further customize loudmouth, edit the values in the installed initializer file (config/initializers/loudmouth.rb):
 
     # Optionally specify a layout to use for the loudmouth controller
     config.use_layout = ''
@@ -65,17 +65,17 @@ To further customize loudmouth, edit the values in config/initializers/loudmouth
 Overriding the Loudmouth Controller
 -----------------------------------
 
-Any loudmouth method can be overridden by overriding the loudmouth controller.  We have a generator for that!
+Any loudmouth method can be overridden.  And hey...there's a generator for that!
 
     rails g loudmouth:override_controller
     
 This will install a loudmouth override controller into your application (app/controllers).
 
-To use the override controller, make sure to update your comments_on call in your routes.rb file:
+To activate the override controller, make sure to update your comments_on call in your routes.rb file:
 
     comments_on :articles, :by => :users, :controller => 'comments'
 
-Some key functions to override:
+Some common functions to override:
 
 * **after\_create\_path** - where to direct the user after successfully posting a comment
 * **validate\_destroy** - validates whether the current user can delete a comment (e.g. admin or comment author)
