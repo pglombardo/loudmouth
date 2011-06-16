@@ -1,6 +1,7 @@
 require "loudmouth"
 require "rails/routes"
 require "extensions/helper"
+require "extensions/active_record"
 
 module Loudmouth
   class Engine < Rails::Engine
@@ -25,12 +26,12 @@ module Loudmouth
   end
   
   def self.include_helpers
-    ActiveSupport.on_load(:action_controller) do
-      include Loudmouth::Controllers::Helpers
-    end
-
-    # ActiveSupport.on_load(:action_view) do
+    # ActiveSupport.on_load(:action_controller) do
     #   include Loudmouth::Controllers::Helpers
     # end
+
+    ActiveSupport.on_load(:action_view) do
+      include Loudmouth::Controllers::Helpers
+    end
   end
 end
