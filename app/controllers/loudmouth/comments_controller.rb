@@ -22,9 +22,12 @@ class Loudmouth::CommentsController < ApplicationController
   end
 
   def create
+    @topic = topic_c.find(params[topic_comment.to_sym][topic.foreign_key.to_sym])
+
+    redirect_to :back unless validate_create(@topic)
+    
     @comment = topic_comment_c.new(params[topic_comment.to_sym])
     @user = user_c.find(params[topic_comment.to_sym][('author_' + user.foreign_key).to_sym])
-    @topic = topic_c.find(params[topic_comment.to_sym][topic.foreign_key.to_sym])
     
     if params[topic_comment.to_sym][:content] == new_comment_content()
       flash[:error] = new_comment_content().
@@ -115,28 +118,47 @@ class Loudmouth::CommentsController < ApplicationController
     Loudmouth.new_comment_content
   end
   
-  def topic_path
+  ################
+  # Paths
+  ################
+  
+  # The path the user is redirected to after a successful update of a comment
+  def after_update_path
+    url_for(@topic)
   end
   
-  def edit_topic_path
-  end
-  
+  # The path the user is redirected to after a successful creation of a comment
   def after_create_path
     url_for(@user)
   end
   
+  # The path the user is redirected to after a successful destroy of a comment
   def after_destroy_path
-    :back
+    url_for(@topic)
+  end
+  
+  ######################
+  # Validation Routines
+  ######################
+
+  # Used to validate that the current user can comment on topic.
+  # Override to provide application specific commenting validation
+  def validate_create(topic)
+    true
   end
 
+  # Used to validate that the current user can destroy the comment.
+  # Override to provide application specific validation
   def validate_destroy(comment)
-    # Check if the app if there are corresponding instance variables for
+    
+    # Check if there are corresponding instance variables for
     # topic and user.  If so attempt to validate with those.
     # Otherwise, this function can be overridden.
     user = instance_variable_get(:"@#{user}")
     topic = instance_variable_get(:"@#{topic}")
     
     if user and topic
+      # is the comment owner?
       if user.id == topic.send(:"#{user.foreign_key}")
         return true
       end
