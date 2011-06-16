@@ -4,7 +4,5 @@
 
 = render_comment_form_for(@topic, user)
 
-- @comments.each do |comment|
-  = render :partial => 'loudmouth/comments/comment', :object => comment  
-
+= render_comments_for(@topic)
 
