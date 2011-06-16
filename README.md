@@ -69,9 +69,9 @@ Any loudmouth method can be overridden.  And hey...there's a generator for that!
 
     rails g loudmouth:override_controller
     
-This will install a loudmouth override controller into your application (app/controllers).
+This will install a loudmouth override controller into your application (into app/controllers).
 
-To activate the override controller, make sure to update your comments_on call in your routes.rb file:
+To activate the override controller, make sure to update all of your comments_on calls in your routes.rb file:
 
     comments_on :articles, :by => :users, :controller => 'comments'
 
