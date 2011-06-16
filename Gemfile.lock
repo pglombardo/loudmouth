@@ -3,6 +3,7 @@ GEM
   specs:
     acts_as_tree (0.1.1)
     git (1.2.5)
+    haml (3.1.2)
     jeweler (1.6.0)
       bundler (~> 1.0.0)
       git (>= 1.2.5)
@@ -17,6 +18,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_tree
   bundler (~> 1.0.0)
+  haml
   jeweler (~> 1.6.0)
   rcov
   shoulda
