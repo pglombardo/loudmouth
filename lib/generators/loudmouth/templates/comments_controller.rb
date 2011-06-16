@@ -12,49 +12,75 @@ class CommentsController < Loudmouth::CommentsController
   # def index
   #   if topic.to_sym == :game
   #     @game = Game.find(params[:game_id])
-  #   elsif topic.to_sym == :profile
-  #     @profile = Profile.find(params[:profile_id], :include => [ :primary_pic ])
   #   else
   #     raise "unknown model in Comments#index"
   #   end
   #   super
   # end
-  
-  #
-  # after_create_path specifies the path the user is redirected to after
-  # successfully posting a comment.
-  #
-  # def after_create_path
-  #   if topic.to_sym == :game
-  #     game_comments_path(@game)
-  #   elsif topic.to_sym == :profile
-  #     profile_comments_path(@profile)
-  #   elsif topic.to_sym == :profile_pic
-  #     profile_face_path(@profile, @profile_pic)
-  #   else
-  #     raise "unknown model in Comments#after_create_path"
-  #   end
+  #   
+  # def edit
+  # end
+  # 
+  # def create
+  # end
+  # 
+  # def update
+  # end
+  # 
+  # def destroy
   # end
   
-  #
-  # validate_destroy is called prior to destroying a comment.
+  ################
+  # Paths
+  ################
+  
+  # The path the user is redirected to after a successful update of a comment
+  # def after_update_path
+  #   url_for(@topic)
+  # end
+  
+  # The path the user is redirected to after a successful creation of a comment
+  # def after_create_path
+  #   url_for(@user)
+  # end
+  
+  # The path the user is redirected to after a successful destroy of a comment
+  # def after_destroy_path
+  #   url_for(@topic)
+  # end
+  
+  ######################
+  # Validation Routines
+  ######################
+
+  # Used to validate that the current user can comment on topic.
+  # Override to provide application specific commenting validation
+  # def validate_create(topic)
+  #   true
+  # end
+
+  # Used to validate that the current user can destroy the comment.
+  # Override to provide application specific validation
   # Return true or false to indicate whether the current user is authorized to do so.
   #
   # def validate_destroy(comment)
   #   [ code to determine if the current user is authorized to destroy comment ]
   #   return true/false
   # end
-  
+
+  ######################
+  # Validation Routines
+  ######################
   #
-  # You can have a dynamic layout specified under conditions defined below.
+  # You can have a dynamic layout specified under the conditions defined below.
   #
   # def determine_layout
   #   if params.has_key?(:profile_id)
-  #     'with_left_sidebar'
+  #     'special_layout'
   #   elsif params.has_key?(:game_id)
-  #     'one_column_900px'
+  #     'application_layout'
   #   else
-  #     'one_column_900px'
+  #     'frames_layout'
   #   end
   # end
 end
