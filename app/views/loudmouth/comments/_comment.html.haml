@@ -1,11 +1,10 @@
-.comment{ :id => dom_id(comment) }
-  %table{ :style => 'border-top: 1px solid black;' }
-    %tr{ :style => 'vertical-align: top;' }
-      %td{ :style => '' }
-        - cc = sanitize(cc)
-        - cc = simple_format(comment.content)
-        = auto_link(cc).html_safe
-    %tr
-      %td{ :style => 'text-align: right; font-size: 90%;' }
-        == #{time_ago_in_words(comment.created_at)} ago
+%table{ :style => 'background: #fff; border: 1px solid #ccc;' }
+  %tr{ :style => 'border: 1px solid #ccc; padding: 5px;' }
+    %td{ :style => 'border: 1px solid #ccc; padding: 5px;' }
+      - cc = sanitize(cc)
+      - cc = simple_format(comment.content)
+      = auto_link(cc).html_safe
+  %tr{ :style => 'border: 1px solid #ccc; padding: 5px;' }
+    %th{ :style => 'background: #eee; text-align: right; font-size: 80%;' }
+      == Posted #{time_ago_in_words(comment.created_at)} ago
 
