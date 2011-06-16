@@ -18,10 +18,18 @@ Usage
 Assuming you want to have 'users' comment on 'articles' add the following to your routes.rb:
 
     comments_on :articles, :by => :users
-    
+
 run the generator to create the comment model (ArticleComments):
 
     rails generate loudmouth Article User
+    
+run the new migrations
+
+    rake db:migrate
+    
+add the following to your Article model (app/models/article.rb)
+
+    loudmouths_can_comment
     
 and you get nested routes like these:
 
