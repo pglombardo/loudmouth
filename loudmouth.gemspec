@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{loudmouth}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Peter Giacomo Lombardo}]
-  s.date = %q{2011-06-12}
+  s.date = %q{2011-06-16}
   s.description = %q{Loudmouth adds commenting to one or many of your models.}
   s.email = %q{pglombardo@gmail.com}
   s.extra_rdoc_files = [
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "app/views/loudmouth/comments/_comment.html.haml",
     "app/views/loudmouth/comments/_comment_form.html.haml",
     "app/views/loudmouth/comments/index.html.haml",
+    "lib/extensions/active_record.rb",
     "lib/extensions/helper.rb",
     "lib/generators/loudmouth/install_generator.rb",
     "lib/generators/loudmouth/loudmouth_generator.rb",
@@ -58,12 +59,14 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<acts_as_tree>, [">= 0"])
+      s.add_runtime_dependency(%q<haml>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.0"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
       s.add_dependency(%q<acts_as_tree>, [">= 0"])
+      s.add_dependency(%q<haml>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
@@ -71,6 +74,7 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<acts_as_tree>, [">= 0"])
+    s.add_dependency(%q<haml>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
