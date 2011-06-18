@@ -5,7 +5,8 @@ module LoudmouthExtension
   
   module ClassMethods
     def loudmouths_can_comment(options = {})
-      has_many :comments, :class_name => "#{self.name}Comment", :dependent => :destroy, :order => 'created_at DESC'
+      has_many :comments, :class_name => "#{self.name}Comment", :include => [ :author ], 
+                    :dependent => :destroy, :order => 'created_at DESC'
       send :include, InstanceMethods
     end   
   end  
