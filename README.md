@@ -45,7 +45,7 @@ If you want to render comments in-line on Articles#show
     
 or to render a new comment form
 
-    render_comment_form_for(@article)
+    render_comment_form_for(@article, @user)
     
 ## Advanced Usage
 
@@ -65,7 +65,7 @@ Any loudmouth method can be overridden.  And hey...there's a generator for that!
 
     rails g loudmouth:override_controller
     
-This will install a loudmouth override controller into your application (into app/controllers).
+This will install a loudmouth override controller into your application (app/controllers/comments_controller.rb).
 
 To activate the override controller, make sure to update all of your comments_on calls in your routes.rb file:
 
