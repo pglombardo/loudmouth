@@ -6,8 +6,8 @@ class CommentsController < Loudmouth::CommentsController
 
   #
   # You can override any method in the Loudmouth::CommentsController.
-  # Here we override index to locate and declare additional instance variables
-  # and then call super to pass control to the original index method.
+  # As an example, here we override index to locate and declare additional instance variables
+  # and then call super to pass control to the original loudmouth index method.
   #
   # def index
   #   if topic.to_sym == :game
@@ -34,14 +34,14 @@ class CommentsController < Loudmouth::CommentsController
   # Paths
   ################
   
-  # The path the user is redirected to after a successful update of a comment
-  # def after_update_path
+  # The path the user is redirected to after a successful creation of a comment
+  # def after_create_path
   #   url_for(@topic)
   # end
   
-  # The path the user is redirected to after a successful creation of a comment
-  # def after_create_path
-  #   url_for(@user)
+  # The path the user is redirected to after a successful update of a comment
+  # def after_update_path
+  #   url_for(@topic)
   # end
   
   # The path the user is redirected to after a successful destroy of a comment
@@ -56,7 +56,15 @@ class CommentsController < Loudmouth::CommentsController
   # Used to validate that the current user can comment on topic.
   # Override to provide application specific commenting validation
   # def validate_create(topic)
-  #   true
+  #   [ code to determine if the current user is authorized to comment on 'topic' ]
+  #   return true/false
+  # end
+  
+  # Used to validate that the current user can update an existing comment
+  # Override to provide application specific commenting validation
+  # def validate_update(comment)
+  #   [ code to determine if the current user is authorized to update 'comment' ]
+  #  return true/false
   # end
 
   # Used to validate that the current user can destroy the comment.
@@ -64,12 +72,12 @@ class CommentsController < Loudmouth::CommentsController
   # Return true or false to indicate whether the current user is authorized to do so.
   #
   # def validate_destroy(comment)
-  #   [ code to determine if the current user is authorized to destroy comment ]
+  #   [ code to determine if the current user is authorized to destroy 'comment' ]
   #   return true/false
   # end
 
   ######################
-  # Validation Routines
+  # Other Routines
   ######################
   #
   # You can have a dynamic layout specified under the conditions defined below.
