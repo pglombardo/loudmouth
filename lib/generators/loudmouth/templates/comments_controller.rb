@@ -80,7 +80,7 @@ class CommentsController < Loudmouth::CommentsController
   # Other Routines
   ######################
   #
-  # You can have a dynamic layout specified under the conditions defined below.
+  # You can have a dynamic layout specified under the conditions you define below.
   #
   # def determine_layout
   #   if params.has_key?(:profile_id)
