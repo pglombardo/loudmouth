@@ -57,6 +57,8 @@ class CommentsController < Loudmouth::CommentsController
   # Override to provide application specific commenting validation
   # def validate_create(topic)
   #   [ code to determine if the current user is authorized to comment on 'topic' ]
+  #   [ set a flash message to diplay to the user in fail conditions ]
+  #   flash[:error] = 'You're not authorized to comment here.'
   #   return true/false
   # end
   
@@ -64,6 +66,8 @@ class CommentsController < Loudmouth::CommentsController
   # Override to provide application specific commenting validation
   # def validate_update(comment)
   #   [ code to determine if the current user is authorized to update 'comment' ]
+  #   [ set a flash message to diplay to the user in fail conditions ]
+  #   flash[:error] = 'You're not authorized to edit this comment.'
   #  return true/false
   # end
 
@@ -73,6 +77,8 @@ class CommentsController < Loudmouth::CommentsController
   #
   # def validate_destroy(comment)
   #   [ code to determine if the current user is authorized to destroy 'comment' ]
+  #   [ set a flash message to diplay to the user in fail conditions ]
+  #   flash[:error] = 'You're not authorized to delete this comment.'
   #   return true/false
   # end
 
