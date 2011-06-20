@@ -27,7 +27,7 @@ class Loudmouth::CommentsController < ApplicationController
     @topic = topic_c.find(params[topic_comment.to_sym][topic.foreign_key.to_sym])
 
     # Run create validations
-    redirect_to :back unless validate_create(@topic)
+    redirect_to :back and return unless validate_create(@topic)
     
     # Sanitize comment content
     params[topic_comment.to_sym][:content] = sanitize params[topic_comment.to_sym][:content]
@@ -35,7 +35,7 @@ class Loudmouth::CommentsController < ApplicationController
     @comment = topic_comment_c.new(params[topic_comment.to_sym])
     
     # Run comment validations
-    redirect_to :back unless validate_comment(@comment)
+    redirect_to :back and return unless validate_comment(@comment)
     
     @user = user_c.find(params[topic_comment.to_sym][('author_' + user.foreign_key).to_sym])
     
@@ -167,7 +167,8 @@ class Loudmouth::CommentsController < ApplicationController
       return false
     end
     
-    if comment.content.length > Loudmouth.max_comment.length
+    if Loudmouth.max_comment_length > 0 and
+         comment.content.length > Loudmouth.max_comment_length
       flash[:error] = "Comments cannot be more than #{Loudmouth.max_comment_length} characters in length."
       return false
     end
