@@ -12,14 +12,20 @@ module Loudmouth
     end
   end
   
+  mattr_accessor :treasure_map
+  @@treasure_map = {}
+  
   mattr_accessor :use_layout
   @@use_layout = ''
   
   mattr_accessor :new_comment_content
   @@new_comment_content = ''
+  
+  mattr_accessor :allow_anonymous
+  @@allow_anonymous = false
 
-  mattr_accessor :treasure_map
-  @@treasure_map = {}
+  mattr_accessor :rate_limit_cooldown
+  @@rate_limit_cooldown = 1
 
   def self.setup
     yield self
