@@ -21,8 +21,9 @@ module Loudmouth
         unless Loudmouth.treasure_map.has_key?(topic.class.name.underscore.to_sym)
           raise "loudmouth not setup for #{topic.class.name.underscore.downcase.to_sym}"
         end
-
-        render :partial => 'loudmouth/comments/comment', :collection => topic.comments, :as => :comment
+        
+        render :partial => 'loudmouth/comments/comment', :collection => topic.comments, 
+                  :locals => { :topic => topic }
       end
       
       def topic_comment_path(topic)
