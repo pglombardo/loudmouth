@@ -129,7 +129,7 @@ class Loudmouth::CommentsController < ApplicationController
   
   # The path the user is redirected to after a successful creation of a comment
   def after_create_path
-    url_for(@user)
+    url_for(@topic)
   end
   
   # The path the user is redirected to after a successful destroy of a comment
@@ -146,11 +146,16 @@ class Loudmouth::CommentsController < ApplicationController
   def validate_create(topic)
     true
   end
+  
+  # Used to validate that the current user can update an existing comment
+  # Override to provide application specific commenting validation
+  def validate_update(comment)
+    true
+  end
 
   # Used to validate that the current user can destroy the comment.
   # Override to provide application specific validation
   def validate_destroy(comment)
-    
     # Check if there are corresponding instance variables for
     # topic and user.  If so attempt to validate with those.
     # Otherwise, this function can be overridden.
