@@ -53,6 +53,15 @@ class CommentsController < Loudmouth::CommentsController
   # Validation Routines
   ######################
 
+  # Used to validate comments
+  # Override to provide application specific comment validation
+  # def validate_comment(comment)
+  #   [ code to determine if the comment is valid ]
+  #   [ set a flash message to diplay to the user in fail conditions ]
+  #   flash[:error] = 'Comment cannot be...'
+  #   return true/false
+  # end
+
   # Used to validate that the current user can comment on topic.
   # Override to provide application specific commenting validation
   # def validate_create(topic)
