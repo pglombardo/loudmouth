@@ -1,4 +1,5 @@
 class Loudmouth::CommentsController < ApplicationController
+  include ActionView::Helpers::SanitizeHelper
   layout Loudmouth.use_layout if Loudmouth.use_layout.length > 0
   before_filter :authenticate_user!, :except => [ :index ]
   
@@ -25,11 +26,20 @@ class Loudmouth::CommentsController < ApplicationController
   def create
     @topic = topic_c.find(params[topic_comment.to_sym][topic.foreign_key.to_sym])
 
+    # Run create validations
     redirect_to :back unless validate_create(@topic)
     
+    # Sanitize comment content
+    params[topic_comment.to_sym][:content] = sanitize params[topic_comment.to_sym][:content]
+    
     @comment = topic_comment_c.new(params[topic_comment.to_sym])
+    
+    # Run comment validations
+    redirect_to :back unless validate_comment(@comment)
+    
     @user = user_c.find(params[topic_comment.to_sym][('author_' + user.foreign_key).to_sym])
     
+    # Make sure the default comment text isn't being posted
     if params[topic_comment.to_sym][:content] == new_comment_content()
       flash[:error] = new_comment_content().
       redirect_to :back
@@ -48,6 +58,11 @@ class Loudmouth::CommentsController < ApplicationController
   def update
     @comment = topic_comment_c.find(params[:id])
     redirect_to :back unless validate_update(@comment)
+    
+    @topic = topic_c.find(params[topic_comment.to_sym][topic.foreign_key.to_sym])
+    
+    tmp_comment = topic_comment_c.new(params[topic_comment.to_sym])
+    redirect_to :back unless validate_comment(tmp_comment)
 
     if @comment.update_attributes(params[topic_comment.to_sym])
       flash[:success] = 'Comment successfully updated.'
@@ -60,6 +75,7 @@ class Loudmouth::CommentsController < ApplicationController
 
   def destroy
     @comment = topic_comment_c.find(params[:id])
+    @topic = topic_c.find(params[topic.foreign_key.to_sym])
     
     if validate_destroy(@comment)
       @comment.destroy
@@ -142,6 +158,21 @@ class Loudmouth::CommentsController < ApplicationController
   ######################
   # Validation Routines
   ######################
+  
+  # Used to validate comments
+  # Override to provide application specific comment validation
+  def validate_comment(comment)
+    if comment.content.length < Loudmouth.min_comment_length
+      flash[:error] = "Comments must be at least #{Loudmouth.min_comment_length} characters in length."
+      return false
+    end
+    
+    if comment.content.length > Loudmouth.max_comment.length
+      flash[:error] = "Comments cannot be more than #{Loudmouth.max_comment_length} characters in length."
+      return false
+    end
+    true
+  end
 
   # Used to validate that the current user can comment on topic.
   # Override to provide application specific commenting validation
