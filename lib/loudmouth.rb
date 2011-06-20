@@ -26,6 +26,12 @@ module Loudmouth
 
   mattr_accessor :rate_limit_cooldown
   @@rate_limit_cooldown = 1
+  
+  mattr_accessor :min_comment_length
+  @@min_comment_length = 2
+  
+  mattr_accessor :max_comment_length
+  @@max_comment_length = 0
 
   def self.setup
     yield self
