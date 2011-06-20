@@ -3,7 +3,7 @@ class Loudmouth::CommentsController < ApplicationController
   before_filter :authenticate_user!, :except => [ :index ]
   
   helper_method :topic, :topic_c, :topic_comment, :topic_comment_c, :user, :user_c
-  helper_method :new_comment_content, :validate_create, :validate_destroy
+  helper_method :new_comment_content, :validate_create, :validate_update, :validate_destroy
 
   def index
     @topic = topic_c.find(params[topic.foreign_key.to_sym])
@@ -19,6 +19,7 @@ class Loudmouth::CommentsController < ApplicationController
   
   def edit
     @comment = topic_c.find(params[:id])
+    redirect_to :back unless validate_update(@comment)
   end
 
   def create
@@ -46,6 +47,7 @@ class Loudmouth::CommentsController < ApplicationController
 
   def update
     @comment = topic_comment_c.find(params[:id])
+    redirect_to :back unless validate_update(@comment)
 
     if @comment.update_attributes(params[topic_comment.to_sym])
       flash[:success] = 'Comment successfully updated.'
