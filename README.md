@@ -59,6 +59,20 @@ To further customize loudmouth, edit the values in the installed initializer fil
     # Default comment text for the new comment form
     config.new_comment_content = "Enter new Comment..."
 
+### Custom Views
+
+You can even run the generator to install the views used to render comments:
+
+    rails g loudmouth:views
+    
+This installs the following files into your application:
+
+    app/views/loudmouth/comments/_comment.html.haml
+    app/views/loudmouth/comments/_comment_form.html.haml
+    app/views/loudmouth/comments/index.html.haml
+
+With these views, you can customize how comments appear and are rendered.
+
 ### Overriding the Loudmouth Controller
 
 Any loudmouth method can be overridden.  And hey...there's a generator for that!
