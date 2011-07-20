@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{loudmouth}
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Peter Giacomo Lombardo}]
-  s.date = %q{2011-06-20}
+  s.date = %q{2011-07-20}
   s.description = %q{Loudmouth adds commenting to one or many of your models.}
   s.email = %q{pglombardo@gmail.com}
   s.extra_rdoc_files = [
