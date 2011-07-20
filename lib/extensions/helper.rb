@@ -26,6 +26,18 @@ module Loudmouth
                   :locals => { :topic => topic }
       end
       
+      def has_comments?(topic)
+        unless Loudmouth.treasure_map.has_key?(topic.class.name.underscore.to_sym)
+          raise "loudmouth not setup for #{topic.class.name.underscore.downcase.to_sym}"
+        end
+        if topic.comments
+          if topic.comments.count > 0
+            return true
+          end
+        end
+        return false
+      end
+      
       def topic_comment_path(topic)
         send("#{topic.class.name.underscore}_comments_path", topic)
       end
