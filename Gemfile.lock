@@ -8,8 +8,11 @@ GEM
       bundler (~> 1.0.0)
       git (>= 1.2.5)
       rake
+    json (1.6.4)
     rake (0.9.1)
     rcov (0.9.9)
+    rdoc (3.12)
+      json (~> 1.4)
     shoulda (2.11.3)
 
 PLATFORMS
@@ -21,4 +24,5 @@ DEPENDENCIES
   haml
   jeweler (~> 1.6.0)
   rcov
+  rdoc
   shoulda

@@ -9,3 +9,4 @@ end
 
 gem "acts_as_tree"
 gem "haml"
+gem "rdoc"
