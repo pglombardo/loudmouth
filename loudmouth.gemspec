@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{loudmouth}
-  s.version = "0.2.3"
+  s.name = "loudmouth"
+  s.version = "0.2.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Peter Giacomo Lombardo}]
-  s.date = %q{2011-07-20}
-  s.description = %q{Loudmouth adds commenting to one or many of your models.}
-  s.email = %q{pglombardo@gmail.com}
+  s.authors = ["Peter Giacomo Lombardo"]
+  s.date = "2012-01-25"
+  s.description = "Loudmouth adds commenting to one or many of your models."
+  s.email = "pglombardo@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
@@ -48,11 +48,11 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/test_loudmouth.rb"
   ]
-  s.homepage = %q{http://github.com/pglombardo/loudmouth}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.1}
-  s.summary = %q{Comments for one or many models.}
+  s.homepage = "http://github.com/pglombardo/loudmouth"
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.11"
+  s.summary = "Comments for one or many models."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
@@ -60,6 +60,7 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<acts_as_tree>, [">= 0"])
       s.add_runtime_dependency(%q<haml>, [">= 0"])
+      s.add_runtime_dependency(%q<rdoc>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.0"])
@@ -67,6 +68,7 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<acts_as_tree>, [">= 0"])
       s.add_dependency(%q<haml>, [">= 0"])
+      s.add_dependency(%q<rdoc>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
@@ -75,6 +77,7 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<acts_as_tree>, [">= 0"])
     s.add_dependency(%q<haml>, [">= 0"])
+    s.add_dependency(%q<rdoc>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.0"])
