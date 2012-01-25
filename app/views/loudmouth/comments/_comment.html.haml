@@ -1,7 +1,7 @@
 %table{ :style => 'background: #fff; border: 1px solid #ccc;' }
   %tr{ :style => 'border: 1px solid #ccc; padding: 5px;' }
     %td{ :style => 'border: 1px solid #ccc; padding: 5px;' }
-      = simple_format auto_link sanitize comment.content
+      = simple_format auto_link break_big_words sanitize comment.content
   %tr{ :style => 'border: 1px solid #ccc; padding: 5px;' }
     %th{ :style => 'background: #eee; text-align: right; font-size: 80%;' }
       == Posted #{time_ago_in_words(comment.created_at)} ago

@@ -42,6 +42,17 @@ module Loudmouth
         send("#{topic.class.name.underscore}_comments_path", topic)
       end
       
+      def break_big_words(text, *args)
+         options = args.extract_options!
+         unless args.blank?
+           options[:max_word_length] = args[0] || 75
+         end
+         options.reverse_merge!(:max_word_length => 75)
+         text = text.split(" ").collect do |word|
+           word.length > options[:max_word_length] ? word.gsub(/(.{1,#{options[:max_word_length]}})/, "\\1 ") : word
+         end * " "
+      end
+    
     end
     module InternalHelpers #:nodoc:
       extend ActiveSupport::Concern
